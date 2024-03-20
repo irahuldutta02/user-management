@@ -19,6 +19,13 @@ https://github.com/irahuldutta02/user-management/assets/78687135/5f9576af-e31c-4
 - You can update user
 - You can search user
 
+### Scope of Improvement
+
+- The backend error handling can be improved
+- Authorization and Authentication can be added
+- The project can be improved with state management tools like Redux or Recoil
+- The UI can be improved further
+
 ### FYI
 
 - The backend is deployed on Render on free tier. It may take up to 50 seconds or few more to up the server depending upon your internet speed initially. It is not a performance issue.
