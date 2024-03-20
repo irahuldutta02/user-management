@@ -1,1 +1,0 @@
-# react-tailwind-starter-template

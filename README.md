@@ -70,7 +70,7 @@ npm run dev
 
 ### 3. Import the Post man collection for server
 
-[Postman collection](./postman-collection/user-mangement.postman_collection.json)
+[Postman collection](./postman-collection/)
 
 - Routes
   - GET / [Check if server is up]
