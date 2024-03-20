@@ -8,6 +8,8 @@
 
 ## Preview
 
+https://github.com/irahuldutta02/user-management/assets/78687135/5f9576af-e31c-4c04-8032-8d56db4db54e
+
 ## Description
 
 ### User Management System
@@ -21,7 +23,7 @@
 
 - The backend is deployed on Render on free tier. It may take up to 50 seconds or few more to up the server depending upon your internet speed initially. It is not a performance issue.
 
-
+![01](https://github.com/irahuldutta02/user-management/assets/78687135/6f9fd8eb-0303-441c-916f-0ff7b346787f)
 
 ## Local Setup
 
