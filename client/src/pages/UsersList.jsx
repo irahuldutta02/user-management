@@ -14,10 +14,9 @@ export const UsersList = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          "https://jsonplaceholder.typicode.com/users"
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/getusers/`
         );
-        const data = response.data;
-        setUser(data);
+        setUser(response?.data?.data);
       } catch (error) {
         console.error(error);
         setError(true);
@@ -59,7 +58,7 @@ export const UsersList = () => {
                   </thead>
                   <tbody>
                     {user.map((user) => (
-                      <tr key={user.id} className="border-b">
+                      <tr key={user._id} className="border-b">
                         <th
                           scope="row"
                           className="px-6 py-4 font-medium text-accent-2 whitespace-nowrap "
@@ -71,7 +70,7 @@ export const UsersList = () => {
                         <td className="px-6 py-4 text-center flex justify-center items-center gap-2">
                           <a
                             onClick={() => {
-                              navigate(`/user/${user.id}`);
+                              navigate(`/user/${user._id}`);
                             }}
                             className="font-medium text-blue-600  hover:underline cursor-pointer"
                           >

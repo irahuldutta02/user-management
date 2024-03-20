@@ -38,10 +38,9 @@ export const UserPage = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `https://jsonplaceholder.typicode.com/users/${id}`
+          `${import.meta.env.VITE_SERVER_BASE_URL}/api/getuser/${id}`
         );
-        const data = response.data;
-        setUser(data);
+        setUser(response?.data?.data);
       } catch (error) {
         setError(true);
       } finally {

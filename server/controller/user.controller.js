@@ -2,9 +2,9 @@ import asyncHandler from "express-async-handler";
 import User from "../models/user.model.js";
 
 const createUser = asyncHandler(async (req, res) => {
+  console.log(req.body);
   try {
     const user = new User({
-      id: req.body.id,
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
@@ -26,9 +26,11 @@ const createUser = asyncHandler(async (req, res) => {
       .status(201)
       .send({ status: 201, message: "User created", data: createdUser });
   } catch (error) {
-    return res
-      .status(400)
-      .send({ status: 400, message: "Something went wrong User not created" });
+    return res.status(400).send({
+      status: 400,
+      message: "Something went wrong User not created",
+      error: error,
+    });
   }
 });
 
@@ -39,9 +41,11 @@ const getAllUsers = asyncHandler(async (req, res) => {
       .status(200)
       .send({ status: 200, message: "All users", data: users });
   } catch (error) {
-    return res
-      .status(404)
-      .send({ status: 404, message: "Something went wrong. Users not found" });
+    return res.status(404).send({
+      status: 404,
+      message: "Something went wrong. Users not found",
+      error: error,
+    });
   }
 });
 
@@ -56,7 +60,9 @@ const getUserById = asyncHandler(async (req, res) => {
       return res.status(404).send({ status: 404, message: "User not found" });
     }
   } catch (error) {
-    return res.status(404).send({ status: 404, message: "User not found" });
+    return res
+      .status(404)
+      .send({ status: 404, message: "User not found", error: error });
   }
 });
 
@@ -81,24 +87,28 @@ const updateUser = asyncHandler(async (req, res) => {
       return res.status(404).send({ status: 404, message: "User not found" });
     }
   } catch (error) {
-    return res.status(404).send({ status: 404, message: "User not found" });
+    return res
+      .status(404)
+      .send({ status: 404, message: "User not found", error: error });
   }
 });
 
+// delete route -> /api/delete/:id
 const deleteUser = asyncHandler(async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    const deletedUser = await User.findOneAndDelete({ _id: req.params.id });
 
-    if (user) {
-      await user.remove();
+    if (deletedUser) {
       return res
         .status(200)
-        .send({ status: 200, message: "User deleted", data: {} });
+        .send({ status: 200, message: "User deleted", data: deletedUser });
     } else {
       return res.status(404).send({ status: 404, message: "User not found" });
     }
   } catch (error) {
-    return res.status(404).send({ status: 404, message: "User not found" });
+    return res
+      .status(404)
+      .send({ status: 404, message: "User not found", error: error });
   }
 });
 
