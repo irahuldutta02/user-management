@@ -72,19 +72,29 @@ npm run dev
 
 [Postman collection](./postman-collection/user-mangement.postman_collection.json)
 
-### 4. Open the browser and go to 
+- Routes
+  - GET / [Check if server is up]
+  - GET /api/getusers [Get all users]
+  - GET /api/getuser/:id [Get user by id]
+  - PUT /api/updateuser/:id [Update user by id]
+  - POST /api/createuser [Create user]
+  - DELETE /api/delete/:id [Delete user by id]
+
+### 4. Open the browser and go to
+
 ```
-http://localhost:3000
+http://localhost:5173
 ```
 
 ## Tech Stack
 
-- React 
+- React
 - Tailwind CSS
 - Node.js
 - Express
 
 ### Packages
+
 - axios
 - mongoose
 - react hot toast
