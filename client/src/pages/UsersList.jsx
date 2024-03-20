@@ -7,6 +7,11 @@ export const UsersList = () => {
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [search, setSearch] = useState("");
+
+  const filteredUsers = user.filter((user) =>
+    user.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   const navigate = useNavigate();
 
@@ -55,8 +60,19 @@ export const UsersList = () => {
               User List
             </div>
 
-            <div className="flex w-full">
-              <div className="flex justify-end w-full">
+            <div className="flex w-full items-center justify-end gap-4">
+              <div className="flex">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  className="bg-secondary text-accent-2 px-4 py-2 rounded-lg focus:outline-none outline-none"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
+                />
+              </div>
+              <div className="flex justify-end">
                 <button
                   onClick={() => {
                     navigate("/adduser");
@@ -88,7 +104,7 @@ export const UsersList = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {user.map((user) => (
+                    {filteredUsers.map((user) => (
                       <tr key={user._id} className="border-b">
                         <th
                           scope="row"
@@ -126,6 +142,16 @@ export const UsersList = () => {
                         </td>
                       </tr>
                     ))}
+                    {filteredUsers.length === 0 && (
+                      <tr className="border-b">
+                        <td
+                          colSpan="4"
+                          className="px-6 py-4 font-medium text-accent-2 whitespace-nowrap text-center"
+                        >
+                          No users found with the search term
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </table>
               </div>
