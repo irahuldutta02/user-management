@@ -2,7 +2,6 @@ import asyncHandler from "express-async-handler";
 import User from "../models/user.model.js";
 
 const createUser = asyncHandler(async (req, res) => {
-  console.log(req.body);
   try {
     const user = new User({
       name: req.body.name,
