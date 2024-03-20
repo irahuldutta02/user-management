@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "3f50f2c7-71a3-4e0b-abd2-a8f65364a897",
+		"name": "user-mangement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30661629"
+	},
+	"item": [
+		{
+			"name": "test server status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/"
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/api/getusers"
+			},
+			"response": []
+		},
+		{
+			"name": "get user by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{URL}}/api/getuser/65faaafb48e9cf3673b91ed1"
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Rahul Dutta\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL}}/api/updateuser/65faa868e63c20dbf67c535f"
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{URL}}/api/delete/65faaafb48e9cf3673b91ed1"
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Glenna Reichert\",\r\n    \"username\": \"Delphine\",\r\n    \"email\": \"Chaim_McDermott@dana.io\",\r\n    \"address\": {\r\n        \"street\": \"Dayna Park\",\r\n        \"suite\": \"Suite 449\",\r\n        \"city\": \"Bartholomebury\",\r\n        \"zipcode\": \"76495-3109\"\r\n    },\r\n    \"phone\": \"(775)976-6794 x41206\",\r\n    \"website\": \"conrad.com\",\r\n    \"company\": {\r\n        \"name\": \"Abernathy Group\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{URL}}/api/createuser"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
