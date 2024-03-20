@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export const UsersList = () => {
   const [user, setUser] = useState([]);
@@ -28,6 +29,23 @@ export const UsersList = () => {
     fetchUsers();
   }, []);
 
+  const deleteUser = async (id) => {
+    try {
+      const response = await axios.delete(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/delete/${id}`
+      );
+
+      const newUsers = user.filter(
+        (user) => user._id !== response?.data?.data?._id
+      );
+      setUser(newUsers);
+
+      toast.success("User deleted successfully!");
+    } catch (error) {
+      toast.error("Something went wrong while deleting user!");
+    }
+  };
+
   return (
     <>
       {!loading && !error && user.length > 0 && (
@@ -35,6 +53,19 @@ export const UsersList = () => {
           <div className="flex justify-center flex-col items-center w-full max-w-6xl p-4 gap-4">
             <div className="text-3xl text-center font-bold text-accent-2 w-full">
               User List
+            </div>
+
+            <div className="flex w-full">
+              <div className="flex justify-end w-full">
+                <button
+                  onClick={() => {
+                    navigate("/adduser");
+                  }}
+                  className="bg-secondary text-accent-2 px-4 py-2 rounded-lg font-medium"
+                >
+                  Add User
+                </button>
+              </div>
             </div>
 
             <div className="flex w-full">
@@ -76,10 +107,20 @@ export const UsersList = () => {
                           >
                             View
                           </a>
-                          <a className="font-medium text-yellow-600  hover:underline cursor-pointer">
+                          <a
+                            onClick={() => {
+                              navigate(`/updateuser/${user._id}`);
+                            }}
+                            className="font-medium text-yellow-600  hover:underline cursor-pointer"
+                          >
                             Edit
                           </a>
-                          <a className="font-medium text-red-600  hover:underline cursor-pointer">
+                          <a
+                            onClick={() => {
+                              deleteUser(user._id);
+                            }}
+                            className="font-medium text-red-600  hover:underline cursor-pointer"
+                          >
                             Delete
                           </a>
                         </td>
@@ -98,6 +139,19 @@ export const UsersList = () => {
           <div className="flex justify-center flex-col items-center w-full max-w-6xl p-4 gap-4">
             <div className="text-3xl text-center font-bold text-accent-2 w-full">
               User List
+            </div>
+
+            <div className="flex w-full">
+              <div className="flex justify-end w-full">
+                <button
+                  onClick={() => {
+                    navigate("/adduser");
+                  }}
+                  className="bg-secondary text-accent-2 px-4 py-2 rounded-lg font-medium"
+                >
+                  Add User
+                </button>
+              </div>
             </div>
 
             <div className="flex w-full">
@@ -135,6 +189,7 @@ export const UsersList = () => {
           </div>
         </div>
       )}
+
       {loading && (
         <div className="h-screen w-screen bg-primary flex justify-center items-center">
           <div className="text-3xl text-accent-2 p-4 text-center">
@@ -142,6 +197,7 @@ export const UsersList = () => {
           </div>
         </div>
       )}
+
       {error && (
         <div className="h-screen w-screen bg-primary flex justify-center items-center">
           <div className="text-3xl  p-4 text-center text-orange-300">
